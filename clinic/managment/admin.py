@@ -11,8 +11,13 @@ class ClinicAdmin(admin.ModelAdmin):
 class WhareHouseAdmin(admin.ModelAdmin):
     pass
 
+class CategoryAdmin(admin.ModelAdmin):
+    pass
+
 
 
 admin.site.register(User,UserAdmin)
 admin.site.register(Clinic,ClinicAdmin)
 admin.site.register(WhareHouse,WhareHouseAdmin)
+admin.site.register(Category,CategoryAdmin)
+
