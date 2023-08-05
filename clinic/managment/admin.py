@@ -8,6 +8,11 @@ class UserAdmin(admin.ModelAdmin):
 class ClinicAdmin(admin.ModelAdmin):
     pass
 
+class WhareHouseAdmin(admin.ModelAdmin):
+    pass
+
+
 
 admin.site.register(User,UserAdmin)
 admin.site.register(Clinic,ClinicAdmin)
+admin.site.register(WhareHouse,WhareHouseAdmin)
