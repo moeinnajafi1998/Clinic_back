@@ -18,5 +18,6 @@ urlpatterns = [
     path('users/<int:pk>/', UserRetrieveUpdateDeleteView.as_view(), name='user-retrieve-update-delete'),
 
     path('user-recognization',UserRecognization.as_view(),name='user-recognization'),
+    path('test-token',TestToken.as_view(),name='test-token'),
 
 ]

@@ -4,6 +4,7 @@ from .serializers import *
 from rest_framework.permissions import IsAuthenticated
 from .permissions import *
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 class ClinicListCreateView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
@@ -75,3 +76,9 @@ class UserRecognization(generics.RetrieveAPIView):
     def retrieve_response(self, user):
         serialized_user = self.get_serializer(user)
         return Response(serialized_user.data)
+    
+
+class TestToken(APIView):
+    permission_classes = [IsAuthenticated,]
+    def get(self, request):
+        return Response(200)
