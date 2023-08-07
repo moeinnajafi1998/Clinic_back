@@ -5,6 +5,8 @@ from rest_framework.permissions import IsAuthenticated
 from .permissions import *
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import viewsets
+
 
 class ClinicListCreateView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
@@ -57,6 +59,13 @@ class UserListCreateView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+
+class ClinicAdminViewSet(APIView):
+    permission_classes = [IsAuthenticated, IsSuperuser]
+    def get(self, request, format=None):
+        clinic_admins = User.objects.filter(user_type='Clinic_Admin')
+        serializer = UserSerializer(clinic_admins, many=True)
+        return Response(serializer.data, status=200)
 
 class UserRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
