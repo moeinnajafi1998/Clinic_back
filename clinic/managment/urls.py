@@ -18,6 +18,8 @@ urlpatterns = [
     path('clinic-admins/', ClinicAdminViewSet.as_view(), name='clinic-admins-list'),
     path('typical-users/', TypicalUserViewSet.as_view(), name='typical-user-list'),
     path('nurse-list/', NurseViewSet.as_view(), name='nurse-list'),
+    path('sick-list/', SickViewSet.as_view(), name='sick-list'),
+
 
     
 
