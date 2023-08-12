@@ -106,6 +106,13 @@ class WarehouseKeeperViewSet(APIView):
     
 
 
+class FinancialManagerViewSet(APIView):
+    permission_classes = [IsAuthenticated, IsSuperuser]
+    def get(self, request, format=None):
+        Financial_Manager = User.objects.filter(user_type='Financial_Manager')
+        serializer = UserSerializer(Financial_Manager, many=True)
+        return Response(serializer.data, status=200)
+
 
 class UserRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, IsSuperuser]

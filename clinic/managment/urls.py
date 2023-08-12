@@ -20,6 +20,8 @@ urlpatterns = [
     path('nurse-list/', NurseViewSet.as_view(), name='nurse-list'),
     path('sick-list/', SickViewSet.as_view(), name='sick-list'),
     path('warehouse-keepers/', WarehouseKeeperViewSet.as_view(), name='warehouse-keeper-list'),
+    path('financial-managers/', FinancialManagerViewSet.as_view(), name='financial-manager-list'),
+
 
 
 
