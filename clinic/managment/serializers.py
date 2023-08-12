@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import *
+from django.contrib.auth.models import Permission
+from rest_framework import serializers
 
 class ClinicSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,4 +30,10 @@ class ItemSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username','password','is_superuser','user_type']
+        fields = ['username','is_superuser','user_type','user_permissions','image']
+
+
+class PermissionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Permission
+        fields = '__all__'
