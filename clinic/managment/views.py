@@ -77,6 +77,16 @@ class TypicalUserViewSet(APIView):
         serializer = UserSerializer(typical_user, many=True)
         return Response(serializer.data, status=200)
 
+
+
+class NurseViewSet(APIView):
+    permission_classes = [IsAuthenticated, IsSuperuser]
+    def get(self, request, format=None):
+        Nurse = User.objects.filter(user_type='Nurse')
+        serializer = UserSerializer(Nurse, many=True)
+        return Response(serializer.data, status=200)
+
+
 class UserRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
     queryset = User.objects.all()

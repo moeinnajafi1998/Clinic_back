@@ -16,7 +16,10 @@ urlpatterns = [
 
     path('users/', UserListCreateView.as_view(), name='user-list-create'),
     path('clinic-admins/', ClinicAdminViewSet.as_view(), name='clinic-admins-list'),
-    path('typical-user/', TypicalUserViewSet.as_view(), name='typical-user-list'),
+    path('typical-users/', TypicalUserViewSet.as_view(), name='typical-user-list'),
+    path('nurse-list/', NurseViewSet.as_view(), name='nurse-list'),
+
+    
 
     path('users/<int:pk>/', UserRetrieveUpdateDeleteView.as_view(), name='user-retrieve-update-delete'),
 
