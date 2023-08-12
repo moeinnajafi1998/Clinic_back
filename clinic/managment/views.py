@@ -94,8 +94,18 @@ class SickViewSet(APIView):
         Sick = User.objects.filter(user_type='Sick')
         serializer = UserSerializer(Sick, many=True)
         return Response(serializer.data, status=200)
+
+
+
+class WarehouseKeeperViewSet(APIView):
+    permission_classes = [IsAuthenticated, IsSuperuser]
+    def get(self, request, format=None):
+        Warehouse_Keeper = User.objects.filter(user_type='Warehouse_Keeper')
+        serializer = UserSerializer(Warehouse_Keeper, many=True)
+        return Response(serializer.data, status=200)
     
-    
+
+
 
 class UserRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
