@@ -27,10 +27,19 @@ class ItemSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class PermissionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Permission
+        fields = ['codename',]
+        
+
 class UserSerializer(serializers.ModelSerializer):
+    user_permissions = PermissionSerializer(many=True)
+
     class Meta:
         model = User
-        fields = ['username','is_superuser','user_type','user_permissions','image']
+        fields = ['id','username','password','is_superuser','user_type','user_permissions','image']
 
 
 class PermissionSerializer(serializers.ModelSerializer):
