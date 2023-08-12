@@ -21,4 +21,11 @@ urlpatterns = [
     path('user-recognization',UserRecognization.as_view(),name='user-recognization'),
     path('test-token',TestToken.as_view(),name='test-token'),
 
+    path('create-permission',CreatePermissionView.as_view(),name='create-permission'),
+    path('update-permission/<int:pk>/',UpdatePermissionView.as_view(),name='update-permission'),
+    path('delete-permission/<int:pk>/',DeletePermissionView.as_view(),name='delete-permission'),
+    path('list-permissions/', ListPermissionsView.as_view(), name='list-permissions'),
+
+
+
 ]

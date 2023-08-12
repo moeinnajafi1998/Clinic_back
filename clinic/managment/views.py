@@ -6,6 +6,8 @@ from .permissions import *
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import viewsets
+from django.contrib.auth.models import Permission
+
 
 
 class ClinicListCreateView(generics.ListCreateAPIView):
@@ -91,3 +93,43 @@ class TestToken(APIView):
     permission_classes = [IsAuthenticated,]
     def get(self, request):
         return Response(200)
+    
+
+class CreatePermissionView(generics.CreateAPIView):
+    queryset = Permission.objects.all()
+    serializer_class = PermissionSerializer
+    permission_classes = [IsAuthenticated, IsSuperuser]
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+    
+
+class UpdatePermissionView(generics.UpdateAPIView):
+    queryset = Permission.objects.all()
+    serializer_class = PermissionSerializer
+    permission_classes = [IsAuthenticated, IsSuperuser]
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+    
+
+class DeletePermissionView(generics.DestroyAPIView):
+    queryset = Permission.objects.all()
+    serializer_class = PermissionSerializer
+    permission_classes = [IsAuthenticated, IsSuperuser]
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+    
+
+class ListPermissionsView(generics.ListAPIView):
+    queryset = Permission.objects.all()
+    serializer_class = PermissionSerializer
+    permission_classes = [IsAuthenticated, IsSuperuser]
+
+
+# def initPermissions(request):
+#     PermissionsForDeleteList = [1,2,3,4,5,6,7,8]
