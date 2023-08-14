@@ -116,6 +116,18 @@ class FinancialManagerViewSet(APIView):
 
 
 
+
+class UpdateUser(generics.UpdateAPIView):
+    serializer_class = CreateUserSerializer
+    permission_classes = [IsAuthenticated, IsSuperuser]
+    queryset = User.objects.all()
+
+    def perform_update(self, serializer):
+        instance = serializer.save()
+        hashed_password = make_password(instance.password)
+        instance.password = hashed_password
+        instance.save()
+
 class DeleteUser(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
     queryset = User.objects.all()

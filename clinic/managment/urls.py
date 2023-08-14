@@ -16,8 +16,9 @@ urlpatterns = [
     path('items/<int:pk>/', ItemRetrieveUpdateDeleteView.as_view(), name='item-retrieve-update-delete'),
     # APIs for User Model
     path('users/', UserListView.as_view(), name='user-list-create'),
-    path('delete-user/<int:pk>/', DeleteUser.as_view(), name='delete-user'),
     path('create-user/', CreateUser.as_view(), name='user-create'),
+    path('update-user/<int:pk>/',UpdateUser.as_view(),name='update-user'),
+    path('delete-user/<int:pk>/', DeleteUser.as_view(), name='delete-user'),
     path('clinic-admins/', ClinicAdminViewSet.as_view(), name='clinic-admins-list'),
     path('typical-users/', TypicalUserViewSet.as_view(), name='typical-user-list'),
     path('nurse-list/', NurseViewSet.as_view(), name='nurse-list'),
