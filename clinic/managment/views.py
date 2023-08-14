@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from django.contrib.auth.models import Permission
+from django.contrib.auth.hashers import make_password
 
 
 
@@ -56,7 +57,7 @@ class ItemRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ItemSerializer
 
 
-class UserListCreateView(generics.ListCreateAPIView):
+class UserListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -174,6 +175,18 @@ class ListPermissionsView(generics.ListAPIView):
     queryset = Permission.objects.all()
     serializer_class = PermissionSerializer
     permission_classes = [IsAuthenticated, IsSuperuser]
+
+
+
+class CreateUser(generics.CreateAPIView):
+    serializer_class = CreateUserSerializer
+    permission_classes = [IsAuthenticated, IsSuperuser]
+    def perform_create(self, serializer):
+        instance = serializer.save()
+        hashed_password = make_password(instance.password)
+        instance.password = hashed_password
+        instance.save()
+
 
 
 # def initPermissions(request):

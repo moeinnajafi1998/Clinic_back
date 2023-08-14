@@ -14,20 +14,17 @@ urlpatterns = [
     path('items/', ItemListCreateView.as_view(), name='item-list-create'),
     path('items/<int:pk>/', ItemRetrieveUpdateDeleteView.as_view(), name='item-retrieve-update-delete'),
 
-    path('users/', UserListCreateView.as_view(), name='user-list-create'),
+    path('users/', UserListView.as_view(), name='user-list-create'),
+    path('users/<int:pk>/', UserRetrieveUpdateDeleteView.as_view(), name='user-retrieve-update-delete'),
+
+    path('create-user/', CreateUser.as_view(), name='user-create'),
+
     path('clinic-admins/', ClinicAdminViewSet.as_view(), name='clinic-admins-list'),
     path('typical-users/', TypicalUserViewSet.as_view(), name='typical-user-list'),
     path('nurse-list/', NurseViewSet.as_view(), name='nurse-list'),
     path('sick-list/', SickViewSet.as_view(), name='sick-list'),
     path('warehouse-keepers/', WarehouseKeeperViewSet.as_view(), name='warehouse-keeper-list'),
     path('financial-managers/', FinancialManagerViewSet.as_view(), name='financial-manager-list'),
-
-
-
-
-    
-
-    path('users/<int:pk>/', UserRetrieveUpdateDeleteView.as_view(), name='user-retrieve-update-delete'),
 
     path('user-recognization',UserRecognization.as_view(),name='user-recognization'),
     path('test-token',TestToken.as_view(),name='test-token'),

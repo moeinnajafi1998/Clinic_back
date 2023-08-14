@@ -46,3 +46,12 @@ class PermissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Permission
         fields = '__all__'
+
+
+class CreateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id','username','password','is_superuser','user_type','user_permissions','image']
+        extra_kwargs = {
+            'password': {'write_only': True},
+        }
