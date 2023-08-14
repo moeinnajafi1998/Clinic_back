@@ -15,7 +15,7 @@ urlpatterns = [
     path('items/<int:pk>/', ItemRetrieveUpdateDeleteView.as_view(), name='item-retrieve-update-delete'),
 
     path('users/', UserListView.as_view(), name='user-list-create'),
-    path('users/<int:pk>/', UserRetrieveUpdateDeleteView.as_view(), name='user-retrieve-update-delete'),
+    path('delete-user/<int:pk>/', DeleteUser.as_view(), name='delete-user'),
 
     path('create-user/', CreateUser.as_view(), name='user-create'),
 

@@ -115,11 +115,11 @@ class FinancialManagerViewSet(APIView):
         return Response(serializer.data, status=200)
 
 
-class UserRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
+
+class DeleteUser(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
 
 class UserRecognization(generics.RetrieveAPIView):
     queryset = User.objects.all()
