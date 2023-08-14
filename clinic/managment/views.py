@@ -146,42 +146,42 @@ class ClinicAdminViewSet(APIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
     def get(self, request, format=None):
         clinic_admins = User.objects.filter(user_type='Clinic_Admin')
-        serializer = UserSerializer(clinic_admins, many=True)
+        serializer = UserListSerializer(clinic_admins, many=True)
         return Response(serializer.data, status=200)
 
 class TypicalUserViewSet(APIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
     def get(self, request, format=None):
         typical_user = User.objects.filter(user_type='Typical_User')
-        serializer = UserSerializer(typical_user, many=True)
+        serializer = UserListSerializer(typical_user, many=True)
         return Response(serializer.data, status=200)
 
 class NurseViewSet(APIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
     def get(self, request, format=None):
         Nurse = User.objects.filter(user_type='Nurse')
-        serializer = UserSerializer(Nurse, many=True)
+        serializer = UserListSerializer(Nurse, many=True)
         return Response(serializer.data, status=200)
 
 class SickViewSet(APIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
     def get(self, request, format=None):
         Sick = User.objects.filter(user_type='Sick')
-        serializer = UserSerializer(Sick, many=True)
+        serializer = UserListSerializer(Sick, many=True)
         return Response(serializer.data, status=200)
 
 class WarehouseKeeperViewSet(APIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
     def get(self, request, format=None):
         Warehouse_Keeper = User.objects.filter(user_type='Warehouse_Keeper')
-        serializer = UserSerializer(Warehouse_Keeper, many=True)
+        serializer = UserListSerializer(Warehouse_Keeper, many=True)
         return Response(serializer.data, status=200)
     
 class FinancialManagerViewSet(APIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
     def get(self, request, format=None):
         Financial_Manager = User.objects.filter(user_type='Financial_Manager')
-        serializer = UserSerializer(Financial_Manager, many=True)
+        serializer = UserListSerializer(Financial_Manager, many=True)
         return Response(serializer.data, status=200)
 
 class CreateUser(generics.CreateAPIView):
@@ -212,11 +212,11 @@ class UpdateUserView(generics.UpdateAPIView):
 class DeleteUserView(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserListSerializer
 # other APIs
 class UserRecognization(generics.RetrieveAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserListSerializer
     def retrieve(self, request, *args, **kwargs):
         user = request.user
         if user.is_authenticated:

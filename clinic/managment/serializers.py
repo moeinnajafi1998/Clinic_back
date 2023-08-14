@@ -8,50 +8,31 @@ class ClinicSerializer(serializers.ModelSerializer):
         model = Clinic
         fields = '__all__'
 
-
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
         
-
 class WhareHouseSerializer(serializers.ModelSerializer):
     class Meta:
         model = WhareHouse
         fields = '__all__'
-
 
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = '__all__'
 
-
 class PermissionSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Permission
         fields = ['codename',]
-        
-
-class UserSerializer(serializers.ModelSerializer):
-    user_permissions = PermissionSerializer(many=True)
-    class Meta:
-        model = User
-        fields = ['id','username','password','is_superuser','user_type','user_permissions','image']
 
 class UserListSerializer(serializers.ModelSerializer):
     user_permissions = PermissionSerializer(many=True)
     class Meta:
         model = User
         fields = ['id','username','is_superuser','user_type','user_permissions','image']
-
-
-class PermissionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Permission
-        fields = '__all__'
-
 
 class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
