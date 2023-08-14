@@ -36,10 +36,15 @@ class PermissionSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     user_permissions = PermissionSerializer(many=True)
-
     class Meta:
         model = User
         fields = ['id','username','password','is_superuser','user_type','user_permissions','image']
+
+class UserListSerializer(serializers.ModelSerializer):
+    user_permissions = PermissionSerializer(many=True)
+    class Meta:
+        model = User
+        fields = ['id','username','is_superuser','user_type','user_permissions','image']
 
 
 class PermissionSerializer(serializers.ModelSerializer):
