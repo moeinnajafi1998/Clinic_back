@@ -17,3 +17,21 @@ class IsTypical_User(BasePermission):
         return request.user and request.user.user_type == 'Typical_User'
 
 
+class IsNurse(BasePermission):
+    def has_permission(self, request, view):
+        return request.user and request.user.user_type == 'Nurse'
+
+
+class IsSick(BasePermission):
+    def has_permission(self, request, view):
+        return request.user and request.user.user_type == 'Sick'
+    
+
+class IsWarehouse_Keeper(BasePermission):
+    def has_permission(self, request, view):
+        return request.user and request.user.user_type == 'Warehouse_Keeper'
+    
+
+class IsFinancial_Manager(BasePermission):
+    def has_permission(self, request, view):
+        return request.user and request.user.user_type == 'Financial_Manager'
