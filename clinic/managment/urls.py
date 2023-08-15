@@ -47,9 +47,4 @@ urlpatterns = [
     # other APIs
     path('user-recognization',UserRecognization.as_view(),name='user-recognization'),
     path('test-token',TestToken.as_view(),name='test-token'),
-
-
-
-
-
 ]

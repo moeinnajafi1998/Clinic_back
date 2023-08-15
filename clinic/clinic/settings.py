@@ -56,6 +56,7 @@ INSTALLED_APPS = [
 
 
     'managment',
+    'registeration',
 ]
 
 MIDDLEWARE = [
