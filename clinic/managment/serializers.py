@@ -32,12 +32,12 @@ class UserListSerializer(serializers.ModelSerializer):
     user_permissions = PermissionSerializer(many=True)
     class Meta:
         model = User
-        fields = ['id','username','is_superuser','user_type','user_permissions','image']
+        fields = ['id','username','is_superuser','user_type','user_permissions','image','is_staff']
 
 class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','username','password','is_superuser','user_type','user_permissions','image']
+        fields = ['id','username','password','is_superuser','user_type','user_permissions','image','is_staff']
         extra_kwargs = {
             'password': {'write_only': True},
         }
