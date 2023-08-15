@@ -15,11 +15,11 @@ urlpatterns = [
     path('category-update/<int:pk>/', CategoryUpdateView.as_view(), name='category-update'),
     path('category-delete/<int:pk>/', CategoryDeleteView.as_view(), name='category-delete'),
     # APIs for WareHouse Model
-    path('warehouses/', WarehouseListView.as_view(), name='warehouse-list'),
-    path('warehouse-create/', WarehouseCreateView.as_view(), name='warehouse-create'),
-    path('warehouse-retrieve/<int:pk>/', WarehouseRetrieveView.as_view(), name='warehouse-retrieve'),
-    path('warehouse-update/<int:pk>/', WarehouseUpdateView.as_view(), name='warehouse-update'),
-    path('warehouse-delete/<int:pk>/', WarehouseDeleteView.as_view(), name='warehouse-delete'),
+    path('wharehouses/', WarehouseListView.as_view(), name='wharehouse-list'),
+    path('wharehouse-create/', WarehouseCreateView.as_view(), name='wharehouse-create'),
+    path('wharehouse-retrieve/<int:pk>/', WarehouseRetrieveView.as_view(), name='wharehouse-retrieve'),
+    path('wharehouse-update/<int:pk>/', WarehouseUpdateView.as_view(), name='wharehouse-update'),
+    path('wharehouse-delete/<int:pk>/', WarehouseDeleteView.as_view(), name='wharehouse-delete'),
     # APIs for Item Model
     path('items/', ItemListView.as_view(), name='item-list'),
     path('item-create/', ItemCreateView.as_view(), name='item-create'),
