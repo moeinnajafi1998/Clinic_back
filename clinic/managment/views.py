@@ -12,7 +12,7 @@ from django.contrib.auth.hashers import make_password
 
 # APIs for Clinic Model
 class ClinicListView(generics.ListAPIView):
-    permission_classes = [IsAuthenticated, IsSuperuser]
+    permission_classes = [IsAuthenticated]
     queryset = Clinic.objects.all()
     serializer_class = ClinicSerializer
 
