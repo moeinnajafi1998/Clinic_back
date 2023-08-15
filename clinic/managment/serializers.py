@@ -26,7 +26,7 @@ class ItemSerializer(serializers.ModelSerializer):
 class PermissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Permission
-        fields = ['codename',]
+        fields = '__all__'
 
 class UserListSerializer(serializers.ModelSerializer):
     user_permissions = PermissionSerializer(many=True)
