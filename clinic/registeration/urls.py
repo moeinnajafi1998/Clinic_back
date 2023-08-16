@@ -19,10 +19,10 @@ urlpatterns = [
     path('medicalappointmentsfortypical_user/', MedicalAppointmentsForTypical_user.as_view(), name='medicalappointmentsfortypical_user-list'), #(ها)تمام نوبت های پزشکی مرتبط به یک منشی مشخص کلینیک
     path('medicalappointmentsforsick/', MedicalAppointmentsForSick.as_view(), name='medicalappointmentsforsick-list'), #تمام نوبت های پزشکی مرتبط به یک بیمار مشخص 
     # RequestGoods routes
-    path('goods/', RequestGoodsListView.as_view(), name='goods-list'),
-    path('goods-create/', RequestGoodsCreateView.as_view(), name='goods-create'),
-    path('good/<int:pk>/', RequestGoodsRetrieveView.as_view(), name='goods-detail'),
-    path('good-delete/<int:pk>/', RequestGoodsDestroyView.as_view(), name='goods-delete'),
-    path('good-update/<int:pk>/', RequestGoodsUpdateView.as_view(), name='goods-update'),
+    path('requestgoods/', RequestGoodsListView.as_view(), name='goods-list'),
+    path('requestgood-create/', RequestGoodsCreateView.as_view(), name='goods-create'),
+    path('requestgood/<int:pk>/', RequestGoodsRetrieveView.as_view(), name='goods-detail'),
+    path('requestgood-delete/<int:pk>/', RequestGoodsDestroyView.as_view(), name='goods-delete'),
+    path('requestgood-update/<int:pk>/', RequestGoodsUpdateView.as_view(), name='goods-update'),
     path('requestgoodsfortypical_user/', RequestGoodsForTypical_user.as_view(), name='requestgoodsfortypical_user-list'), #(ها)تمام درخواست های آیتم مرتبط به یک منشی مشخص کلینیک
 ]
