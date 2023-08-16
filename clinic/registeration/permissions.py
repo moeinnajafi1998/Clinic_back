@@ -56,10 +56,8 @@ class IsThisTypical_UserForClinic_4(BasePermission):
 
 class IsSuperUserOrWhareHouseKeeper(BasePermission):
     def has_permission(self, request, view):
-        user = request.user.username
-
-
-        if user=="Warehouse_Keeper" or request.user.is_superuser:
+        user_type = request.user.user_type
+        if user_type=="Warehouse_Keeper" or request.user.is_superuser:
             return True
 
         return False
