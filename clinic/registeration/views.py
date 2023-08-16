@@ -129,3 +129,7 @@ class MedicalAppointmentsForSick(APIView):
         medical_appointments = MedicalAppointment.objects.filter(sick=sick)
         serializer = MedicalAppointmentSerializer(medical_appointments, many=True)  
         return Response(serializer.data, status=200)
+# RequestGoods Views
+class RequestGoodsListView(ListAPIView):
+    queryset = RequestGoods.objects.all()
+    serializer_class = RequestGoodsSerializer
