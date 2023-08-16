@@ -1,11 +1,12 @@
 from rest_framework import generics
 from .models import RequestSession
-from .serializers import RequestSessionSerializer
+from .serializers import *
 from rest_framework.permissions import IsAuthenticated
 from managment.permissions import * 
 from rest_framework.views import APIView
 from managment.models import Clinic
 from rest_framework.response import Response
+from .permissions import IsThisTypical_UserForClinic
 
 
 class RequestSessionListView(generics.ListAPIView):
@@ -38,8 +39,15 @@ class RequestSessionRetrieveView(generics.RetrieveAPIView):
 class RequestSessionUpdateView(generics.UpdateAPIView):
     queryset = RequestSession.objects.all()
     serializer_class = RequestSessionSerializer
-    permission_classes = [IsAuthenticated, IsSuperuser]
+    permission_classes = [IsAuthenticated, IsThisTypical_UserForClinic]
 
+    def partial_update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.is_checked = not instance.is_checked
+        instance.save()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+    
 class RequestSessionDeleteView(generics.DestroyAPIView):
     queryset = RequestSession.objects.all()
     serializer_class = RequestSessionSerializer
