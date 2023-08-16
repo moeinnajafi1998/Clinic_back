@@ -87,7 +87,8 @@ class MedicalAppointmentCreateView(APIView):
                                                             clinic=clinic,
                                                             description=description,
                                                             typical_user=typical_user,
-                                                            nurse=nurse,date=date,
+                                                            nurse=nurse,
+                                                            date=date,
                                                             time=time)
         medical_appointment.save()
         return Response("successful", status=201)
@@ -134,9 +135,21 @@ class RequestGoodsListView(ListAPIView):
     queryset = RequestGoods.objects.all()
     serializer_class = RequestGoodsSerializer
 
-class RequestGoodsCreateView(CreateAPIView):
-    queryset = RequestGoods.objects.all()
-    serializer_class = RequestGoodsSerializer
+class RequestGoodsCreateView(APIView):
+    permission_classes = [IsAuthenticated, IsThisTypical_UserForClinic_2]
+    def post(self, request, format=None):
+        item = request.data.get("item")
+        typical_user = request.user.username
+        clinic = request.data.get("clinic")
+        number = request.data.get("number")
+        description = request.data.get("description")
+        rg = RequestGoods.objects.create(item=item,
+                                        clinic=clinic,
+                                        description=description,
+                                        typical_user=typical_user,
+                                        number=number)
+        rg.save()
+        return Response("successful", status=201)
 
 class RequestGoodsRetrieveView(RetrieveAPIView):
     queryset = RequestGoods.objects.all()
