@@ -150,7 +150,7 @@ class RequestGoodsCreateView(APIView):
         item = request.data.get("item")
         typical_user = request.user.username
         clinic = request.data.get("clinic")
-        number = request.data.get("number")
+        number = int(request.data.get("number"))
         description = request.data.get("description")
         rg = RequestGoods.objects.create(item=item,
                                         clinic=clinic,
