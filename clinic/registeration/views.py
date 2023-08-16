@@ -18,6 +18,18 @@ class RequestSessionCreateView(generics.CreateAPIView):
     serializer_class = RequestSessionSerializer
     permission_classes = [IsAuthenticated, IsSick]
 
+
+class RequestSessionCreateView(APIView):
+    permission_classes = [IsAuthenticated, IsSick]
+    def post(self, request, format=None):
+        sick = request.user.username
+        clinic = request.data.get("clinic")
+        description = request.data.get("description")
+        newRequestSession = RequestSession.objects.create(sick=sick,clinic=clinic,description=description)
+        newRequestSession.save()
+        return Response("successful", status=201)
+    
+
 class RequestSessionRetrieveView(generics.RetrieveAPIView):
     queryset = RequestSession.objects.all()
     serializer_class = RequestSessionSerializer
