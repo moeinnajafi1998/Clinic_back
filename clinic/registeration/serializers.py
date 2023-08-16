@@ -1,7 +1,13 @@
 from rest_framework import serializers
-from .models import RequestSession
+from .models import *
 
 class RequestSessionSerializer(serializers.ModelSerializer):
     class Meta:
         model = RequestSession
+        fields = '__all__'
+
+
+class MedicalAppointmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MedicalAppointment
         fields = '__all__'

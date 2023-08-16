@@ -10,5 +10,13 @@ urlpatterns = [
     path('requestsession-delete/<int:pk>/', RequestSessionDeleteView.as_view(), name='session-delete'),
     path('requestsessionsforTypical_user/', RequestSessionsForTypical_user.as_view(), name='requestsessionsforTypical_user-list'), #(ها)تمام درخواست های جلسه مرتبط به یک منشی مشخص کلینیک
     path('requestsessionsforsick/', RequestSessionsForSick.as_view(), name='requestsessionsforsick-list'), #(بیمار) تمام درخواست های جلسه مرتبط به یک 
+    # MedicalAppointment routes
+    path('medicalappointments/', MedicalAppointmentListView.as_view(), name='appointment-list'),
+    path('medicalappointment-create/', MedicalAppointmentCreateView.as_view(), name='appointment-create'),
+    path('medicalappointment/<int:pk>/', MedicalAppointmentRetrieveView.as_view(), name='appointment-detail'),
+    path('medicalappointment-delete/<int:pk>/', MedicalAppointmentDestroyView.as_view(), name='appointment-delete'),
+    path('medicalappointment-update/<int:pk>/', MedicalAppointmentUpdateView.as_view(), name='appointment-update'),
+    path('medicalappointmentsfortypical_user/', MedicalAppointmentsForTypical_user.as_view(), name='medicalappointmentsfortypical_user-list'), #(ها)تمام نوبت های پزشکی مرتبط به یک منشی مشخص کلینیک
+    path('medicalappointmentsforsick/', MedicalAppointmentsForSick.as_view(), name='medicalappointmentsforsick-list'), #تمام نوبت های پزشکی مرتبط به یک بیمار مشخص 
 
 ]

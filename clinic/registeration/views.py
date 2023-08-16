@@ -6,19 +6,14 @@ from managment.permissions import *
 from rest_framework.views import APIView
 from managment.models import Clinic
 from rest_framework.response import Response
-from .permissions import IsThisTypical_UserForClinic
+from .permissions import *
+from rest_framework.generics import ListAPIView,CreateAPIView,RetrieveAPIView,DestroyAPIView,UpdateAPIView
 
-
+# RequestSession Views
 class RequestSessionListView(generics.ListAPIView):
     queryset = RequestSession.objects.all()
     serializer_class = RequestSessionSerializer
     permission_classes = [IsAuthenticated, IsSuperuser]
-
-class RequestSessionCreateView(generics.CreateAPIView):
-    queryset = RequestSession.objects.all()
-    serializer_class = RequestSessionSerializer
-    permission_classes = [IsAuthenticated, IsSick]
-
 
 class RequestSessionCreateView(APIView):
     permission_classes = [IsAuthenticated, IsSick]
@@ -30,7 +25,6 @@ class RequestSessionCreateView(APIView):
         newRequestSession.save()
         return Response("successful", status=201)
     
-
 class RequestSessionRetrieveView(generics.RetrieveAPIView):
     queryset = RequestSession.objects.all()
     serializer_class = RequestSessionSerializer
@@ -73,3 +67,65 @@ class RequestSessionsForSick(APIView):
         request_sessions = RequestSession.objects.filter(sick=sick)
         serializer = RequestSessionSerializer(request_sessions, many=True)  
         return Response(serializer.data, status=200) 
+# MedicalAppointment Views
+class MedicalAppointmentListView(ListAPIView):
+    queryset = MedicalAppointment.objects.all()
+    serializer_class = MedicalAppointmentSerializer
+    permission_classes = [IsAuthenticated, IsSuperuser]
+
+class MedicalAppointmentCreateView(APIView):
+    permission_classes = [IsAuthenticated, IsThisTypical_UserForClinic_2]
+    def post(self, request, format=None):
+        sick = request.data.get("sick")
+        typical_user = request.user.username
+        clinic = request.data.get("clinic")
+        nurse = request.data.get("nurse")
+        description = request.data.get("description")
+        date = request.data.get("date")
+        time = request.data.get("time")
+        medical_appointment = MedicalAppointment.objects.create(sick=sick,
+                                                            clinic=clinic,
+                                                            description=description,
+                                                            typical_user=typical_user,
+                                                            nurse=nurse,date=date,
+                                                            time=time)
+        medical_appointment.save()
+        return Response("successful", status=201)
+
+class MedicalAppointmentRetrieveView(RetrieveAPIView):
+    queryset = MedicalAppointment.objects.all()
+    serializer_class = MedicalAppointmentSerializer
+    permission_classes = [IsAuthenticated, IsSuperuser]
+
+class MedicalAppointmentDestroyView(DestroyAPIView):
+    queryset = MedicalAppointment.objects.all()
+    serializer_class = MedicalAppointmentSerializer
+    permission_classes = [IsAuthenticated, IsSuperuser]
+
+class MedicalAppointmentUpdateView(generics.UpdateAPIView):
+    queryset = MedicalAppointment.objects.all()
+    serializer_class = MedicalAppointmentSerializer
+    permission_classes = [IsAuthenticated, IsThisTypical_UserForClinic_3]
+
+    def partial_update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.is_done = not instance.is_done
+        instance.save()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+class MedicalAppointmentsForTypical_user(APIView):
+    permission_classes = [IsAuthenticated, IsTypical_User]
+    def get(self, request, *args, **kwargs):
+        typical_user = request.user.username
+        medical_appointments = MedicalAppointment.objects.filter(typical_user=typical_user)
+        serializer = MedicalAppointmentSerializer(medical_appointments, many=True)  
+        return Response(serializer.data, status=200)
+    
+class MedicalAppointmentsForSick(APIView):
+    permission_classes = [IsAuthenticated, IsSick]
+    def get(self, request, *args, **kwargs):
+        sick = request.user.username
+        medical_appointments = MedicalAppointment.objects.filter(sick=sick)
+        serializer = MedicalAppointmentSerializer(medical_appointments, many=True)  
+        return Response(serializer.data, status=200)
