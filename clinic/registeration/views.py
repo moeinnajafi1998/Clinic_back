@@ -137,3 +137,7 @@ class RequestGoodsListView(ListAPIView):
 class RequestGoodsCreateView(CreateAPIView):
     queryset = RequestGoods.objects.all()
     serializer_class = RequestGoodsSerializer
+
+class RequestGoodsRetrieveView(RetrieveAPIView):
+    queryset = RequestGoods.objects.all()
+    serializer_class = RequestGoodsSerializer
