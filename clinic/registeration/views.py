@@ -134,6 +134,15 @@ class MedicalAppointmentsForSick(APIView):
 class RequestGoodsListView(ListAPIView):
     queryset = RequestGoods.objects.all()
     serializer_class = RequestGoodsSerializer
+    permission_classes = [IsAuthenticated, IsSuperUserOrWhareHouseKeeper]
+
+class RequestGoodsForTypical_user(APIView):
+    permission_classes = [IsAuthenticated, IsTypical_User]
+    def get(self, request, *args, **kwargs):
+        typical_user = request.user.username
+        rgs = RequestGoods.objects.filter(typical_user=typical_user)
+        serializer = RequestGoodsSerializer(rgs, many=True)  
+        return Response(serializer.data, status=200)
 
 class RequestGoodsCreateView(APIView):
     permission_classes = [IsAuthenticated, IsThisTypical_UserForClinic_2]

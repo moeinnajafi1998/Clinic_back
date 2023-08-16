@@ -24,4 +24,5 @@ urlpatterns = [
     path('good/<int:pk>/', RequestGoodsRetrieveView.as_view(), name='goods-detail'),
     path('good-delete/<int:pk>/', RequestGoodsDestroyView.as_view(), name='goods-delete'),
     path('good-update/<int:pk>/', RequestGoodsUpdateView.as_view(), name='goods-update'),
+    path('requestgoodsfortypical_user/', RequestGoodsForTypical_user.as_view(), name='requestgoodsfortypical_user-list'), #(ها)تمام درخواست های آیتم مرتبط به یک منشی مشخص کلینیک
 ]
