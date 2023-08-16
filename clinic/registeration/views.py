@@ -133,3 +133,7 @@ class MedicalAppointmentsForSick(APIView):
 class RequestGoodsListView(ListAPIView):
     queryset = RequestGoods.objects.all()
     serializer_class = RequestGoodsSerializer
+
+class RequestGoodsCreateView(CreateAPIView):
+    queryset = RequestGoods.objects.all()
+    serializer_class = RequestGoodsSerializer
