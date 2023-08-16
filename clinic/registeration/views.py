@@ -150,7 +150,7 @@ class RequestGoodsCreateView(APIView):
         item = request.data.get("item")
         typical_user = request.user.username
         clinic = request.data.get("clinic")
-        number = request.data.get("number")
+        number = int(request.data.get("number"))
         description = request.data.get("description")
         rg = RequestGoods.objects.create(item=item,
                                         clinic=clinic,
@@ -173,7 +173,7 @@ class RequestGoodsDestroyView(DestroyAPIView):
 class RequestGoodsUpdateView(generics.UpdateAPIView):
     queryset = RequestGoods.objects.all()
     serializer_class = RequestGoodsSerializer
-    permission_classes = [IsAuthenticated, IsThisTypical_UserForClinic_4]
+    permission_classes = [IsAuthenticated, IsWarehouse_Keeper]
 
     def partial_update(self, request, *args, **kwargs):
         instance = self.get_object()

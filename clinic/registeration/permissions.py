@@ -41,25 +41,23 @@ class IsThisTypical_UserForClinic_3(BasePermission):
         return False
 
 
-class IsThisTypical_UserForClinic_4(BasePermission):
-    def has_permission(self, request, view):
-        typical_user = request.user.username
-        request_goods_id = view.kwargs.get('pk')
-        rg = get_object_or_404(RequestGoods, id=request_goods_id)
-        clinics = Clinic.objects.filter(typical_user=typical_user, name=rg.clinic)
+# class IsThisTypical_UserForClinic_4(BasePermission):
+#     def has_permission(self, request, view):
+#         typical_user = request.user.username
+#         request_goods_id = view.kwargs.get('pk')
+#         rg = get_object_or_404(RequestGoods, id=request_goods_id)
+#         clinics = Clinic.objects.filter(typical_user=typical_user, name=rg.clinic)
 
-        if clinics.exists():
-            return True
+#         if clinics.exists():
+#             return True
 
-        return False
+#         return False
     
 
 class IsSuperUserOrWhareHouseKeeper(BasePermission):
     def has_permission(self, request, view):
-        user = request.user.username
-
-
-        if user=="Warehouse_Keeper" or request.user.is_superuser:
+        user_type = request.user.user_type
+        if user_type=="Warehouse_Keeper" or request.user.is_superuser:
             return True
 
         return False

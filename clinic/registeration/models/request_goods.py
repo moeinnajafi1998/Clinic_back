@@ -11,4 +11,4 @@ class RequestGoods(models.Model):
     is_done = models.BooleanField(default=False)
     
     def __str__(self):
-        return self.item + " : " + self.number
+        return self.item + " : " + str(self.number)
