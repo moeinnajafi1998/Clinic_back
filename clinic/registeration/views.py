@@ -159,6 +159,7 @@ class RequestGoodsRetrieveView(RetrieveAPIView):
 class RequestGoodsDestroyView(DestroyAPIView):
     queryset = RequestGoods.objects.all()
     serializer_class = RequestGoodsSerializer
+    permission_classes = [IsAuthenticated, IsSuperuser]
 
 class RequestGoodsUpdateView(UpdateAPIView):
     queryset = RequestGoods.objects.all()
