@@ -170,6 +170,14 @@ class RequestGoodsDestroyView(DestroyAPIView):
     serializer_class = RequestGoodsSerializer
     permission_classes = [IsAuthenticated, IsSuperuser]
 
-class RequestGoodsUpdateView(UpdateAPIView):
+class RequestGoodsUpdateView(generics.UpdateAPIView):
     queryset = RequestGoods.objects.all()
     serializer_class = RequestGoodsSerializer
+    permission_classes = [IsAuthenticated, IsThisTypical_UserForClinic_3]
+
+    def partial_update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.is_done = not instance.is_done
+        instance.save()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
