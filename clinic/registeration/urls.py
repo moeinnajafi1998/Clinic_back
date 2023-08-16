@@ -18,5 +18,10 @@ urlpatterns = [
     path('medicalappointment-update/<int:pk>/', MedicalAppointmentUpdateView.as_view(), name='appointment-update'),
     path('medicalappointmentsfortypical_user/', MedicalAppointmentsForTypical_user.as_view(), name='medicalappointmentsfortypical_user-list'), #(ها)تمام نوبت های پزشکی مرتبط به یک منشی مشخص کلینیک
     path('medicalappointmentsforsick/', MedicalAppointmentsForSick.as_view(), name='medicalappointmentsforsick-list'), #تمام نوبت های پزشکی مرتبط به یک بیمار مشخص 
-
+    # RequestGoods routes
+    path('goods/', RequestGoodsListView.as_view(), name='goods-list'),
+    path('goods-create/', RequestGoodsCreateView.as_view(), name='goods-create'),
+    path('good/<int:pk>/', RequestGoodsRetrieveView.as_view(), name='goods-detail'),
+    path('good-delete/<int:pk>/', RequestGoodsDestroyView.as_view(), name='goods-delete'),
+    path('good-update/<int:pk>/', RequestGoodsUpdateView.as_view(), name='goods-update'),
 ]
