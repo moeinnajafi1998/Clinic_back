@@ -3,3 +3,4 @@ from .Clinic import Clinic
 from .WhareHouse import WhareHouse
 from .Category import Category
 from .Item import Item
+from .Service import Service

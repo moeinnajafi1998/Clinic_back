@@ -17,6 +17,8 @@ class CategoryAdmin(admin.ModelAdmin):
 class ItemAdmin(admin.ModelAdmin):
     pass
 
+class ServiceAdmin(admin.ModelAdmin):
+    pass
 
 
 admin.site.register(User,UserAdmin)
@@ -24,5 +26,7 @@ admin.site.register(Clinic,ClinicAdmin)
 admin.site.register(WhareHouse,WhareHouseAdmin)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Item,ItemAdmin)
+admin.site.register(Service,ServiceAdmin)
+
 
 
