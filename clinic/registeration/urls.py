@@ -25,4 +25,8 @@ urlpatterns = [
     path('requestgood-delete/<int:pk>/', RequestGoodsDestroyView.as_view(), name='goods-delete'),
     path('requestgood-update/<int:pk>/', RequestGoodsUpdateView.as_view(), name='goods-update'),
     path('requestgoodsfortypical_user/', RequestGoodsForTypical_user.as_view(), name='requestgoodsfortypical_user-list'), #(ها)تمام درخواست های آیتم مرتبط به یک منشی مشخص کلینیک
+    # VisitAppointments routes
+    path('visitappointment-create/', VisitAppointmentCreateView.as_view(), name='visitappointment-create'),
+
+
 ]

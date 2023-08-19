@@ -13,6 +13,7 @@ class RequestGoodsAdmin(admin.ModelAdmin):
 
 class VisitAppointmentAdmin(admin.ModelAdmin):
     pass
+
 admin.site.register(RequestSession,RequestSessionAdmin)
 admin.site.register(MedicalAppointment,MedicalAppointmentAdmin)
 admin.site.register(RequestGoods,RequestGoodsAdmin)

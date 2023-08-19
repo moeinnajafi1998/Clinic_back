@@ -4,7 +4,7 @@ from .serializers import *
 from rest_framework.permissions import IsAuthenticated
 from managment.permissions import * 
 from rest_framework.views import APIView
-from managment.models import Clinic
+from managment.models import Clinic,Item,Service
 from rest_framework.response import Response
 from .permissions import *
 from rest_framework.generics import ListAPIView,CreateAPIView,RetrieveAPIView,DestroyAPIView,UpdateAPIView
@@ -181,3 +181,34 @@ class RequestGoodsUpdateView(generics.UpdateAPIView):
         instance.save()
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
+# Visit_Appointment Views
+class VisitAppointmentCreateView(APIView):
+    permission_classes = [IsAuthenticated, IsNurse]
+    def post(self, request, format=None):
+        nurse = request.user.username
+        sick = request.data.get("sick")
+        clinic = request.data.get("clinic")
+        typical_user = str(Clinic.objects.get(name=clinic).typical_user)
+        description = request.data.get("description")
+
+        used_items = request.POST.getlist("used_items")
+        used_items_pks = []
+        for u in used_items:
+            used_items_pks.append(int(u))
+        filtered_items = Item.objects.filter(pk__in=used_items_pks)
+
+        used_services = request.POST.getlist("used_services")
+        used_services_pks = []
+        for us in used_services:
+            used_services_pks.append(int(us))
+        filtered_services = Service.objects.filter(pk__in=used_services_pks)
+        va = VisitAppointment.objects.create(sick=sick,
+                                        nurse=nurse,
+                                        clinic=clinic,
+                                        description=description,
+                                        typical_user=typical_user,
+                                        )
+        va.used_items.set(filtered_items)
+        va.services.set(filtered_services)
+        va.save()
+        return Response("successful", status=201)
