@@ -33,6 +33,11 @@ class ItemSerializer2(serializers.ModelSerializer):
         model = Item
         fields = ['name',]
 
+class ServiceSerializer2(serializers.ModelSerializer):
+    class Meta:
+        model = Service
+        fields = ['name',]
+
 class PermissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Permission

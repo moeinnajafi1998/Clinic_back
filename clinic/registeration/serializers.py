@@ -20,8 +20,8 @@ class RequestGoodsSerializer(serializers.ModelSerializer):
 
 
 class VisitAppointmentSerializer(serializers.ModelSerializer):
-    used_items = ItemSerializer(many = True)
-    services = ItemSerializer(many = True)
+    used_items = ItemSerializer2(many = True)
+    services = ServiceSerializer2(many = True)
     class Meta:
         model = VisitAppointment
         fields = '__all__'
