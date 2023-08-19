@@ -61,3 +61,11 @@ class IsSuperUserOrWhareHouseKeeper(BasePermission):
             return True
 
         return False
+    
+class IsSuperUserOrNurse(BasePermission):
+    def has_permission(self, request, view):
+        user_type = request.user.user_type
+        if user_type=="Nurse" or request.user.is_superuser:
+            return True
+
+        return False

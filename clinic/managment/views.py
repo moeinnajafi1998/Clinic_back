@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 from django.contrib.auth.models import Permission
 from django.contrib.auth.hashers import make_password
+from registeration.permissions import IsSuperUserOrNurse
 
 
 # APIs for Clinic Model
@@ -124,7 +125,7 @@ class ItemDeleteView(generics.DestroyAPIView):
     serializer_class = ItemSerializer
 # APIs for Service Model
 class ServiceListView(generics.ListAPIView):
-    permission_classes = [IsAuthenticated,IsSuperuser]
+    permission_classes = [IsAuthenticated,IsSuperUserOrNurse]
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
 
