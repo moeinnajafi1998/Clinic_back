@@ -26,6 +26,9 @@ urlpatterns = [
     path('requestgood-update/<int:pk>/', RequestGoodsUpdateView.as_view(), name='goods-update'),
     path('requestgoodsfortypical_user/', RequestGoodsForTypical_user.as_view(), name='requestgoodsfortypical_user-list'), #(ها)تمام درخواست های آیتم مرتبط به یک منشی مشخص کلینیک
     # VisitAppointments routes
+    path('visitappointments/', VisitAppointmentListView.as_view(), name='visitappointments-list'),
+    path('visitappointmentsfortypical_user/', VisitAppointmentForTypical_user.as_view(), name='visitappointmentsfortypical_user-list'),
+    path('visitappointmentsfornurse/', VisitAppointmentForNurse.as_view(), name='visitappointmentsfornurse-list'),
     path('visitappointment-create/', VisitAppointmentCreateView.as_view(), name='visitappointment-create'),
 
 

@@ -182,6 +182,27 @@ class RequestGoodsUpdateView(generics.UpdateAPIView):
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
 # Visit_Appointment Views
+class VisitAppointmentListView(ListAPIView):
+    queryset = VisitAppointment.objects.all()
+    serializer_class = VisitAppointmentSerializer
+    permission_classes = [IsAuthenticated, IsSuperuser]
+
+class VisitAppointmentForTypical_user(APIView):
+    permission_classes = [IsAuthenticated, IsTypical_User]
+    def get(self, request, *args, **kwargs):
+        typical_user = request.user.username
+        vas = VisitAppointment.objects.filter(typical_user=typical_user)
+        serializer = VisitAppointmentSerializer(vas, many=True)  
+        return Response(serializer.data, status=200)
+    
+class VisitAppointmentForNurse(APIView):
+    permission_classes = [IsAuthenticated, IsNurse]
+    def get(self, request, *args, **kwargs):
+        nurse = request.user.username
+        vas = VisitAppointment.objects.filter(nurse=nurse)
+        serializer = VisitAppointmentSerializer(vas, many=True)  
+        return Response(serializer.data, status=200)
+
 class VisitAppointmentCreateView(APIView):
     permission_classes = [IsAuthenticated, IsNurse]
     def post(self, request, format=None):
@@ -212,3 +233,4 @@ class VisitAppointmentCreateView(APIView):
         va.services.set(filtered_services)
         va.save()
         return Response("successful", status=201)
+    

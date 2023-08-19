@@ -17,3 +17,9 @@ class RequestGoodsSerializer(serializers.ModelSerializer):
     class Meta:
         model = RequestGoods
         fields = '__all__'
+
+
+class VisitAppointmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VisitAppointment
+        fields = '__all__'
