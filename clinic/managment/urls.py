@@ -27,6 +27,12 @@ urlpatterns = [
     path('item-retrieve/<int:pk>/', ItemRetrieveView.as_view(), name='item-retrieve'),
     path('item-update/<int:pk>/', ItemUpdateView.as_view(), name='item-update'),
     path('item-delete/<int:pk>/', ItemDeleteView.as_view(), name='item-delete'),
+    # APIs for Service Model
+    path('services/', ServiceListView.as_view(), name='service-list'),
+    path('service-create/', ServiceCreateView.as_view(), name='service-create'),
+    path('service-retrieve/<int:pk>/', ServiceRetrieveView.as_view(), name='service-retrieve'),
+    path('service-update/<int:pk>/', ServiceUpdateView.as_view(), name='service-update'),
+    path('service-delete/<int:pk>/', ServiceDeleteView.as_view(), name='service-delete'),
     # APIs for Permission Model
     path('permissions/', ListPermissionsView.as_view(), name='permission-list'),
     path('permission-create/',CreatePermissionView.as_view(),name='permission-create'),
