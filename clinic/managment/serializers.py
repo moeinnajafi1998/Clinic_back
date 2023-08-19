@@ -23,6 +23,11 @@ class ItemSerializer(serializers.ModelSerializer):
         model = Item
         fields = '__all__'
 
+class ServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Service
+        fields = '__all__'
+
 class ItemSerializer2(serializers.ModelSerializer):
     class Meta:
         model = Item
