@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import *
-
+from managment.serializers import *
 class RequestSessionSerializer(serializers.ModelSerializer):
     class Meta:
         model = RequestSession
@@ -20,6 +20,8 @@ class RequestGoodsSerializer(serializers.ModelSerializer):
 
 
 class VisitAppointmentSerializer(serializers.ModelSerializer):
+    used_items = ItemSerializer(many = True)
+    services = ItemSerializer(many = True)
     class Meta:
         model = VisitAppointment
         fields = '__all__'
