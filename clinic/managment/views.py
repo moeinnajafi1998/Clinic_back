@@ -93,6 +93,7 @@ class ItemListView(generics.ListAPIView):
 
 class ItemListViewDistinct(generics.ListAPIView):
     permission_classes = [IsAuthenticated,IsNurse]
+    serializer_class = ItemSerializer
     def get_queryset(self):
         queryset = Item.objects.distinct('name')
         return queryset
