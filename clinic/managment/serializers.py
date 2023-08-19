@@ -23,6 +23,11 @@ class ItemSerializer(serializers.ModelSerializer):
         model = Item
         fields = '__all__'
 
+class ItemSerializer2(serializers.ModelSerializer):
+    class Meta:
+        model = Item
+        fields = ['name',]
+
 class PermissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Permission

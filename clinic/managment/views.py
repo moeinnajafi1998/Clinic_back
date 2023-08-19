@@ -87,9 +87,14 @@ class WarehouseDeleteView(generics.DestroyAPIView):
     serializer_class = WhareHouseSerializer
 # APIs for Item Model
 class ItemListView(generics.ListAPIView):
-    permission_classes = [IsAuthenticated, IsSuperuser]
+    permission_classes = [IsAuthenticated,IsSuperuser]
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+
+class ItemNamesListView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated,IsTypical_User]
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer2
 
 class ItemCreateView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
@@ -131,7 +136,6 @@ class UpdatePermissionView(generics.UpdateAPIView):
     serializer_class = PermissionSerializer
     permission_classes = [IsAuthenticated, IsSuperuser]
     
-
 class DeletePermissionView(generics.DestroyAPIView):
     queryset = Permission.objects.all()
     serializer_class = PermissionSerializer

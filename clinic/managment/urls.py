@@ -22,6 +22,7 @@ urlpatterns = [
     path('wharehouse-delete/<int:pk>/', WarehouseDeleteView.as_view(), name='wharehouse-delete'),
     # APIs for Item Model
     path('items/', ItemListView.as_view(), name='item-list'),
+    path('itemsNames/', ItemNamesListView.as_view(), name='item-list-2'),
     path('item-create/', ItemCreateView.as_view(), name='item-create'),
     path('item-retrieve/<int:pk>/', ItemRetrieveView.as_view(), name='item-retrieve'),
     path('item-update/<int:pk>/', ItemUpdateView.as_view(), name='item-update'),
