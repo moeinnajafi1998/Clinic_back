@@ -115,6 +115,31 @@ class ItemDeleteView(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated, IsSuperuser]
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+# APIs for Service Model
+class ServiceListView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated,IsSuperuser]
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
+
+class ServiceCreateView(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated, IsSuperuser]
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
+
+class ServiceRetrieveView(generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated, IsSuperuser]
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
+
+class ServiceUpdateView(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated, IsSuperuser]
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
+
+class ServiceDeleteView(generics.DestroyAPIView):
+    permission_classes = [IsAuthenticated, IsSuperuser]
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
 # APIs for Permission Model
 class ListPermissionsView(generics.ListAPIView):
     queryset = Permission.objects.all()
