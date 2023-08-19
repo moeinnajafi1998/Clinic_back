@@ -94,7 +94,7 @@ class ItemListView(generics.ListAPIView):
 class ItemListViewDistinct(generics.ListAPIView):
     permission_classes = [IsAuthenticated,IsNurse]
     def get_queryset(self):
-        queryset = Item.objects.distinct('field_name')
+        queryset = Item.objects.distinct('name')
         return queryset
 
 class ItemNamesListView(generics.ListAPIView):
